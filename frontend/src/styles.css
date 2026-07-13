@@ -1,0 +1,439 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * Irie Island Tours & Transfers — Caribbean Vibrant design system.
+ * Turquoise sea + sunset gold + deep palm green on warm sand canvas.
+ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sand: var(--sand);
+  --color-gold: var(--gold);
+  --color-palm: var(--palm);
+  --color-sea: var(--sea);
+  --font-display: "Plus Jakarta Sans", "Inter", system-ui, sans-serif;
+}
+
+:root {
+  --radius: 0.875rem;
+
+  /* Caribbean Vibrant palette */
+  --background: oklch(0.985 0.012 90);            /* warm sand cream */
+  --foreground: oklch(0.22 0.04 200);             /* deep teal-black */
+
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.22 0.04 200);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.22 0.04 200);
+
+  --primary: oklch(0.66 0.13 195);                /* turquoise sea */
+  --primary-foreground: oklch(0.99 0.005 90);
+
+  --secondary: oklch(0.42 0.11 165);              /* deep palm */
+  --secondary-foreground: oklch(0.99 0.005 90);
+
+  --muted: oklch(0.95 0.014 95);
+  --muted-foreground: oklch(0.45 0.03 200);
+
+  --accent: oklch(0.78 0.16 75);                  /* sunset gold */
+  --accent-foreground: oklch(0.22 0.04 200);
+
+  --destructive: oklch(0.62 0.22 27);
+  --destructive-foreground: oklch(0.99 0 0);
+
+  --border: oklch(0.9 0.015 100);
+  --input: oklch(0.92 0.012 100);
+  --ring: oklch(0.66 0.13 195);
+
+  --chart-1: oklch(0.66 0.13 195);
+  --chart-2: oklch(0.78 0.16 75);
+  --chart-3: oklch(0.42 0.11 165);
+  --chart-4: oklch(0.7 0.18 35);
+  --chart-5: oklch(0.55 0.15 240);
+
+  --sand: oklch(0.985 0.012 90);
+  --gold: oklch(0.78 0.16 75);
+  --palm: oklch(0.42 0.11 165);
+  --sea: oklch(0.66 0.13 195);
+
+  /* Semantic gradients & shadows */
+  --gradient-hero: linear-gradient(135deg, oklch(0.66 0.13 195) 0%, oklch(0.42 0.11 165) 60%, oklch(0.32 0.08 180) 100%);
+  --gradient-sunset: linear-gradient(120deg, oklch(0.78 0.16 75) 0%, oklch(0.7 0.18 35) 100%);
+  --gradient-sea: linear-gradient(180deg, oklch(0.85 0.08 195) 0%, oklch(0.66 0.13 195) 100%);
+  --shadow-soft: 0 2px 8px -2px oklch(0.42 0.11 165 / 0.12);
+  --shadow-elevated: 0 18px 40px -18px oklch(0.42 0.11 165 / 0.35);
+  --shadow-gold: 0 12px 30px -12px oklch(0.78 0.16 75 / 0.55);
+
+  --sidebar: oklch(0.99 0.008 95);
+  --sidebar-foreground: oklch(0.22 0.04 200);
+  --sidebar-primary: oklch(0.66 0.13 195);
+  --sidebar-primary-foreground: oklch(0.99 0 0);
+  --sidebar-accent: oklch(0.95 0.015 95);
+  --sidebar-accent-foreground: oklch(0.22 0.04 200);
+  --sidebar-border: oklch(0.9 0.015 100);
+  --sidebar-ring: oklch(0.66 0.13 195);
+}
+
+.dark {
+  --background: oklch(0.18 0.03 200);
+  --foreground: oklch(0.97 0.01 90);
+  --card: oklch(0.23 0.035 200);
+  --card-foreground: oklch(0.97 0.01 90);
+  --popover: oklch(0.23 0.035 200);
+  --popover-foreground: oklch(0.97 0.01 90);
+  --primary: oklch(0.72 0.13 195);
+  --primary-foreground: oklch(0.18 0.03 200);
+  --secondary: oklch(0.35 0.08 165);
+  --secondary-foreground: oklch(0.97 0.01 90);
+  --muted: oklch(0.27 0.03 200);
+  --muted-foreground: oklch(0.7 0.02 200);
+  --accent: oklch(0.78 0.16 75);
+  --accent-foreground: oklch(0.18 0.03 200);
+  --destructive: oklch(0.62 0.22 27);
+  --destructive-foreground: oklch(0.99 0 0);
+  --border: oklch(1 0 0 / 0.12);
+  --input: oklch(1 0 0 / 0.15);
+  --ring: oklch(0.72 0.13 195);
+  --sidebar: oklch(0.2 0.03 200);
+  --sidebar-foreground: oklch(0.97 0.01 90);
+  --sidebar-primary: oklch(0.72 0.13 195);
+  --sidebar-primary-foreground: oklch(0.18 0.03 200);
+  --sidebar-accent: oklch(0.27 0.03 200);
+  --sidebar-accent-foreground: oklch(0.97 0.01 90);
+  --sidebar-border: oklch(1 0 0 / 0.12);
+  --sidebar-ring: oklch(0.72 0.13 195);
+}
+
+@layer base {
+  * { border-color: var(--color-border); }
+  html { scroll-behavior: smooth; }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-display);
+    font-feature-settings: "ss01", "cv11";
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4 { letter-spacing: -0.02em; }
+}
+
+@layer utilities {
+  .bg-gradient-hero { background-image: var(--gradient-hero); }
+  .bg-gradient-sunset { background-image: var(--gradient-sunset); }
+  .bg-gradient-sea { background-image: var(--gradient-sea); }
+  .shadow-soft { box-shadow: var(--shadow-soft); }
+  .shadow-elevated { box-shadow: var(--shadow-elevated); }
+  .shadow-gold { box-shadow: var(--shadow-gold); }
+  .text-balance { text-wrap: balance; }
+
+  /* Scroll reveal */
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px) scale(0.985);
+    transition:
+      opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: opacity, transform;
+  }
+  .reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  .reveal-delay-1 { transition-delay: 0.08s; }
+  .reveal-delay-2 { transition-delay: 0.16s; }
+  .reveal-delay-3 { transition-delay: 0.24s; }
+  .reveal-delay-4 { transition-delay: 0.32s; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transform: none; transition: none; }
+  }
+
+  /* Subtle parallax-friendly hover lift */
+  .hover-lift {
+    transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.5s ease;
+  }
+  .hover-lift:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-elevated);
+  }
+
+  /* Global interaction polish */
+  a, button, [role="button"], input, textarea, select {
+    transition: color 0.2s ease, background-color 0.25s ease,
+      border-color 0.25s ease, box-shadow 0.25s ease, transform 0.2s ease,
+      opacity 0.2s ease;
+  }
+
+  /* Tab content fade-up animation (Radix data-state) */
+  [data-slot="tabs-content"][data-state="active"],
+  [role="tabpanel"][data-state="active"] {
+    animation: tab-in 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  @keyframes tab-in {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Page enter animation */
+  .page-enter {
+    animation: page-in 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+  @keyframes page-in {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    [data-slot="tabs-content"][data-state="active"],
+    [role="tabpanel"][data-state="active"],
+    .page-enter { animation: none; }
+  }
+}
+
+
+/* ─── Page transition ──────────────────────────────────────────────────────── */
+.page-enter {
+  animation: page-in 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+@keyframes page-in {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── Route-level fade (apply to every top-level route div) ─────────────────── */
+.route-fade {
+  animation: route-fade-in 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+@keyframes route-fade-in {
+  from { opacity: 0; transform: translateY(10px) scale(0.995); }
+  to   { opacity: 1; transform: translateY(0)    scale(1); }
+}
+
+/* ─── Stagger for grid children ─────────────────────────────────────────────── */
+.stagger-children > * {
+  opacity: 0;
+  animation: stagger-in 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.stagger-children > *:nth-child(1) { animation-delay: 0.05s; }
+.stagger-children > *:nth-child(2) { animation-delay: 0.12s; }
+.stagger-children > *:nth-child(3) { animation-delay: 0.19s; }
+.stagger-children > *:nth-child(4) { animation-delay: 0.26s; }
+.stagger-children > *:nth-child(5) { animation-delay: 0.33s; }
+.stagger-children > *:nth-child(6) { animation-delay: 0.40s; }
+@keyframes stagger-in {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── Number / price counter pop ────────────────────────────────────────────── */
+.pop-in {
+  animation: pop-in 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+@keyframes pop-in {
+  from { opacity: 0; transform: scale(0.8); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+/* ─── Shimmer skeleton (for loading states) ─────────────────────────────────── */
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    oklch(0.92 0.012 100) 25%,
+    oklch(0.96 0.008 100) 50%,
+    oklch(0.92 0.012 100) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.4s ease infinite;
+  border-radius: 0.75rem;
+}
+@keyframes shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+.dark .shimmer {
+  background: linear-gradient(
+    90deg,
+    oklch(0.27 0.03 200) 25%,
+    oklch(0.31 0.03 200) 50%,
+    oklch(0.27 0.03 200) 75%
+  );
+  background-size: 200% 100%;
+}
+
+/* ─── Floating pulse for CTA buttons ────────────────────────────────────────── */
+.pulse-ring {
+  position: relative;
+}
+.pulse-ring::after {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border-radius: inherit;
+  border: 2px solid oklch(0.78 0.16 75 / 0.5);
+  animation: pulse-ring 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+@keyframes pulse-ring {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0; transform: scale(1.08); }
+}
+
+/* ─── Scroll progress bar at top of page ────────────────────────────────────── */
+#scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  height: 3px;
+  background: linear-gradient(90deg, oklch(0.66 0.13 195), oklch(0.78 0.16 75));
+  transition: width 0.1s linear;
+  pointer-events: none;
+}
+
+/* ─── Smooth tab indicator slide ────────────────────────────────────────────── */
+[data-slot="tabs-list"] {
+  position: relative;
+}
+
+/* ─── Hero text shimmer (decorative) ────────────────────────────────────────── */
+.text-shimmer {
+  background: linear-gradient(
+    90deg,
+    oklch(0.78 0.16 75),
+    oklch(0.7 0.18 35),
+    oklch(0.78 0.16 75)
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: text-shimmer 4s linear infinite;
+}
+@keyframes text-shimmer {
+  to { background-position: 200% center; }
+}
+
+/* ─── Card tilt on hover (subtle 3D) ────────────────────────────────────────── */
+.card-3d {
+  transform-style: preserve-3d;
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+
+/* ─── Floating badge animation ──────────────────────────────────────────────── */
+.float {
+  animation: float 3s ease-in-out infinite;
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-6px); }
+}
+
+/* ─── Reduced motion overrides ──────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .page-enter, .route-fade, .stagger-children > *,
+  .pop-in, .pulse-ring::after, .text-shimmer, .float {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .shimmer { animation: none; background: oklch(0.92 0.012 100); }
+}
+
+/* ─── Modal / drawer animations ─────────────────────────────────────────── */
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(32px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0)    scale(1); }
+}
+
+/* ─── Active nav link underline slide ───────────────────────────────────── */
+nav a {
+  position: relative;
+}
+nav a::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  right: 50%;
+  height: 2px;
+  background: var(--color-primary);
+  border-radius: 99px;
+  transition: left 0.3s cubic-bezier(0.22,1,0.36,1),
+              right 0.3s cubic-bezier(0.22,1,0.36,1);
+}
+nav a.active::after,
+nav a[aria-current="page"]::after {
+  left: 12px;
+  right: 12px;
+}
+
+/* ─── Scrollbar hide for filter bar ─────────────────────────────────────── */
+.scrollbar-none::-webkit-scrollbar { display: none; }
+.scrollbar-none { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* ─── Tour card image zoom on filter change ──────────────────────────────── */
+@keyframes card-appear {
+  from { opacity: 0; transform: translateY(16px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0)    scale(1); }
+}
+.tour-card-enter {
+  animation: card-appear 0.4s cubic-bezier(0.22,1,0.36,1) both;
+}
+
+/* ─── Smooth step transitions in booking form ───────────────────────────── */
+@keyframes step-in {
+  from { opacity: 0; transform: translateX(20px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+/* ─── Reduce motion ──────────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  @keyframes fade-in  { from { opacity: 1; } }
+  @keyframes slide-up { from { opacity: 1; transform: none; } }
+  .tour-card-enter    { animation: none; opacity: 1; }
+}
