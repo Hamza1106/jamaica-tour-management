@@ -2,18 +2,27 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Briefcase, Snowflake, Users, Wifi } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { VEHICLES } from "@/lib/mock-data";
+import { useDocumentHead } from "@/hooks/use-document-head";
+import camryImg from "@/assets/camry.webp";
+import landImg from "@/assets/land.png";
+import hiaceImg from "@/assets/hiace.png";
+import mercedesImg from "@/assets/mercedeiz.png";
+
+const VEHICLE_IMAGES: Record<string, string> = {
+  Sedan: camryImg,
+  SUV: landImg,
+  Van: hiaceImg,
+  Luxury: mercedesImg,
+};
 
 export const Route = createFileRoute("/fleet")({
-  head: () => ({
-    meta: [
-      { title: "Our Fleet — Irie Island Tours & Transfers" },
-      { name: "description", content: "Modern, fully-insured vehicles for every party size. Sedans, SUVs, vans, and luxury chauffeured rides." },
-    ],
-  }),
   component: FleetPage,
 });
 
 function FleetPage() {
+  useDocumentHead("Our Fleet — Irie Island Tours & Transfers", [
+    { name: "description", content: "Modern, fully-insured vehicles for every party size. Sedans, SUVs, vans, and luxury chauffeured rides." },
+  ]);
   return (
     <div className="page-enter">
       <section className="bg-gradient-hero text-primary-foreground">
@@ -27,8 +36,13 @@ function FleetPage() {
       <section className="mx-auto grid max-w-7xl gap-6 px-4 py-12 sm:px-6 lg:grid-cols-2">
         {VEHICLES.map((v) => (
           <div key={v.id} className="flex gap-5 rounded-3xl border border-border bg-card p-6 shadow-soft">
-            <div className="grid h-24 w-24 shrink-0 place-items-center rounded-2xl bg-gradient-sea text-3xl">
-              {v.type === "Sedan" ? "🚗" : v.type === "SUV" ? "🚙" : v.type === "Van" ? "🚐" : "🏎️"}
+            <div className="grid h-24 w-24 shrink-0 place-items-center overflow-hidden rounded-2xl bg-gradient-sea p-3">
+              <img
+                src={VEHICLE_IMAGES[v.type]}
+                alt={v.name}
+                className="h-full w-full object-contain"
+                loading="lazy"
+              />
             </div>
             <div className="flex-1 min-w-0">
               <div className="text-xs font-bold uppercase tracking-widest text-primary">{v.type}</div>

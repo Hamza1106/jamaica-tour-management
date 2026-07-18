@@ -1,17 +1,15 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Award, Heart, ShieldCheck, Users } from "lucide-react";
+import { useDocumentHead } from "@/hooks/use-document-head";
 
 export const Route = createFileRoute("/about")({
-  head: () => ({
-    meta: [
-      { title: "About Us — Irie Island Tours & Transfers" },
-      { name: "description", content: "Born-and-raised Jamaican drivers giving travelers the real island experience since 2015." },
-    ],
-  }),
   component: AboutPage,
 });
 
 function AboutPage() {
+  useDocumentHead("About Us — Irie Island Tours & Transfers", [
+    { name: "description", content: "Born-and-raised Jamaican drivers giving travelers the real island experience since 2015." },
+  ]);
   return (
     <div className="page-enter">
       <section className="bg-gradient-hero text-primary-foreground">

@@ -1,18 +1,13 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { TOURS } from "@/lib/mock-data";
 import { useScrollReveal } from "@/hooks/use-reveal";
+import { useDocumentHead } from "@/hooks/use-document-head";
 import { useState, useEffect, useRef } from "react";
 import { MapPin, Clock, Star, ArrowRight, Check, ChevronDown, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/tours")({
-  head: () => ({
-    meta: [
-      { title: "Jamaica Tours & Excursions — Irie Island" },
-      { name: "description", content: "Browse signature Jamaica tours: Dunn's River Falls, Blue Mountains coffee, YS Falls, Negril sunset, and more." },
-    ],
-  }),
   component: ToursPage,
 });
 
@@ -29,6 +24,9 @@ const TAG_MAP: Record<string, Filter[]> = {
 };
 
 function ToursPage() {
+  useDocumentHead("Jamaica Tours & Excursions — Irie Island", [
+    { name: "description", content: "Browse signature Jamaica tours: Dunn's River Falls, Blue Mountains coffee, YS Falls, Negril sunset, and more." },
+  ]);
   useScrollReveal();
   const [active, setActive] = useState<Filter>("All");
   const [selected, setSelected] = useState<string | null>(null);

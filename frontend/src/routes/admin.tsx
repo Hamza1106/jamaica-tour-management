@@ -2,14 +2,9 @@ import { createFileRoute, Link, Outlet, useRouterState, Navigate } from "@tansta
 import { BarChart3, CalendarCheck, LayoutDashboard, LogOut, Users, Shield } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useAuth } from "@/lib/auth";
+import { useDocumentHead } from "@/hooks/use-document-head";
 
 export const Route = createFileRoute("/admin")({
-  head: () => ({
-    meta: [
-      { title: "Admin · Irie Island" },
-      { name: "robots", content: "noindex,nofollow" },
-    ],
-  }),
   component: AdminLayout,
 });
 
@@ -21,6 +16,7 @@ const NAV = [
 ] as const;
 
 function AdminLayout() {
+  useDocumentHead("Admin · Irie Island", [{ name: "robots", content: "noindex,nofollow" }]);
   const { user, isAdmin, loading, profile } = useAuth();
   const pathname = useRouterState({ select: (s) => s.location.pathname });
 
@@ -51,12 +47,12 @@ function AdminLayout() {
           </div>
           <h1 className="text-xl font-bold">Access denied</h1>
           <p className="text-sm text-muted-foreground">
-            Your account <strong>{user.email}</strong> does not have admin permissions.
+            You can not access Admin section!
           </p>
           <p className="text-xs text-muted-foreground bg-muted rounded-xl p-3">
-            To get admin access, ask your Supabase admin to run:<br />
+            
             <code className="font-mono text-primary">
-              update profiles set role = 'admin' where id = '{user.id}';
+              You Don't Have Admin Rights
             </code>
           </p>
           <div className="flex gap-2 justify-center">

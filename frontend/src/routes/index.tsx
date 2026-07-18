@@ -5,23 +5,21 @@ import { TourCard } from "@/components/site/tour-card";
 import { TESTIMONIALS, TOURS } from "@/lib/mock-data";
 import { Button } from "@/components/ui/button";
 import { useScrollReveal } from "@/hooks/use-reveal";
+import { useDocumentHead } from "@/hooks/use-document-head";
 import { useAuth } from "@/lib/auth";
 import heroImg from "@/assets/hero-jamaica.jpg";
 
 export const Route = createFileRoute("/")({
-  head: () => ({
-    meta: [
-      { title: "Irie Island Tours & Transfers — Jamaica Taxi, Airport Transfers & Tours" },
-      { name: "description", content: "Book trusted airport transfers and unforgettable tours across Jamaica. Dunn's River, Blue Mountains, Negril and more." },
-      { property: "og:title", content: "Irie Island — Jamaica Tours & Transfers" },
-      { property: "og:description", content: "Premium Jamaica taxi, airport transfers, and island tours." },
-      { property: "og:image", content: "/og-home.jpg" },
-    ],
-  }),
   component: Home,
 });
 
 function Home() {
+  useDocumentHead("Irie Island Tours & Transfers — Jamaica Taxi, Airport Transfers & Tours", [
+    { name: "description", content: "Book trusted airport transfers and unforgettable tours across Jamaica. Dunn's River, Blue Mountains, Negril and more." },
+    { property: "og:title", content: "Irie Island — Jamaica Tours & Transfers" },
+    { property: "og:description", content: "Premium Jamaica taxi, airport transfers, and island tours." },
+    { property: "og:image", content: "/og-home.jpg" },
+  ]);
   useScrollReveal();
   const { user } = useAuth();
   const featured = TOURS.slice(0, 3);

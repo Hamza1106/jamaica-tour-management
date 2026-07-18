@@ -6,14 +6,9 @@ import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { useDocumentHead } from "@/hooks/use-document-head";
 
 export const Route = createFileRoute("/contact")({
-  head: () => ({
-    meta: [
-      { title: "Contact — Irie Island Tours & Transfers" },
-      { name: "description", content: "Get in touch with our Jamaica booking team. Available 24/7 by phone, WhatsApp, and email." },
-    ],
-  }),
   component: ContactPage,
 });
 
@@ -24,6 +19,9 @@ const schema = z.object({
 });
 
 function ContactPage() {
+  useDocumentHead("Contact — Irie Island Tours & Transfers", [
+    { name: "description", content: "Get in touch with our Jamaica booking team. Available 24/7 by phone, WhatsApp, and email." },
+  ]);
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const submit = (e: React.FormEvent) => {
     e.preventDefault();

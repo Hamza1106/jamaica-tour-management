@@ -12,6 +12,7 @@ import {
 import { TOURS, VEHICLES, getTour } from "@/lib/mock-data";
 import { apiCreateBooking } from "@/lib/api";
 import { useAuth } from "@/lib/auth";
+import { useDocumentHead } from "@/hooks/use-document-head";
 import { z } from "zod";
 
 type BookSearch = {
@@ -32,12 +33,6 @@ export const Route = createFileRoute("/book")({
     passengers: typeof s.passengers === "string" ? s.passengers : "2",
     tour: typeof s.tour === "string" ? s.tour : undefined,
   }),
-  head: () => ({
-    meta: [
-      { title: "Book a Ride or Tour — Irie Island" },
-      { name: "description", content: "Reserve airport transfers and Jamaica tours with secure online booking." },
-    ],
-  }),
   component: BookPage,
 });
 
@@ -54,6 +49,9 @@ const schema = z.object({
 });
 
 function BookPage() {
+  useDocumentHead("Book a Ride or Tour — Irie Island", [
+    { name: "description", content: "Reserve airport transfers and Jamaica tours with secure online booking." },
+  ]);
   const search    = Route.useSearch();
   const navigate  = useNavigate();
   const { user, loading } = useAuth();

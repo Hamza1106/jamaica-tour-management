@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { MapPreview } from "@/components/site/map-preview";
 import { getTour, TOURS, type Tour } from "@/lib/mock-data";
 import { useScrollReveal } from "@/hooks/use-reveal";
+import { useDocumentHead } from "@/hooks/use-document-head";
 
 export const Route = createFileRoute("/tours/$slug")({
   loader: ({ params }): { tour: Tour } => {
@@ -12,23 +13,18 @@ export const Route = createFileRoute("/tours/$slug")({
     if (!tour) throw notFound();
     return { tour };
   },
-  head: ({ loaderData }) => ({
-    meta: loaderData
-      ? [
-          { title: `${loaderData.tour.name} — Irie Island Tours` },
-          { name: "description", content: loaderData.tour.tagline },
-          { property: "og:title", content: loaderData.tour.name },
-          { property: "og:description", content: loaderData.tour.tagline },
-          { property: "og:image", content: loaderData.tour.image },
-        ]
-      : [],
-  }),
   component: TourDetail,
 });
 
 function TourDetail() {
   useScrollReveal();
   const { tour } = Route.useLoaderData() as { tour: Tour };
+  useDocumentHead(`${tour.name} — Irie Island Tours`, [
+    { name: "description", content: tour.tagline },
+    { property: "og:title", content: tour.name },
+    { property: "og:description", content: tour.tagline },
+    { property: "og:image", content: tour.image },
+  ]);
   const similar = TOURS.filter((t) => t.slug !== tour.slug).slice(0, 3);
   const [imgLoaded, setImgLoaded] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
